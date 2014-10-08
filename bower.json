@@ -17,7 +17,7 @@
     "plugin"
   ],
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "angularjs": "*"
   }
 }
