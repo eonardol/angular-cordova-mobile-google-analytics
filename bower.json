@@ -1,0 +1,23 @@
+{
+  "name": "angular-cordova-mobile-google-analytics",
+  "version": "1.0.0",
+  "homepage": "https://github.com/eonardol/angular-cordova-mobile-google-analytics",
+  "authors": [
+    "Leonardo Valenti"
+  ],
+  "description": "An angular wrapper for Danwilson's google-analytics-plugin for Cordova / Phonegap",
+  "main": "angular-cordova-mobile-google-analytics.js",
+  "keywords": [
+    "angular",
+    "google",
+    "analytics",
+    "mobile",
+    "cordova",
+    "phonegap",
+    "plugin"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "angularjs": "*"
+  }
+}
