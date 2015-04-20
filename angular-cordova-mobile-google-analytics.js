@@ -58,6 +58,17 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("addTransactionItem() skipped: analytics is undefined");
           }
         },
+        addCustomDimension: function(key, value) {
+        	if (gaMobileAppTrackerId==null) {
+                console.log("addCustomDimension() skipped: provider not initialized");
+                return;
+              }
+              if (typeof analytics != "undefined") {
+                analytics.addCustomDimension(key, value);
+              } else {
+                console.log("addCustomDimension() skipped: analytics is undefined");
+              }
+        },
         setUserId: function(userId) {
           if (gaMobileAppTrackerId==null) {
             console.log("setUserId() skipped: provider not initialized");
