@@ -4,11 +4,11 @@ angular.module('angular-cordova-mobile-google-analytics', [])
 
     this.startTrackerWithId = function(id) {
       gaMobileAppTrackerId = id;
-      if (typeof analytics != "undefined") {
-        analytics.startTrackerWithId(id);
+      if (typeof window.analytics != "undefined") {
+        window.analytics.startTrackerWithId(id);
         console.log("startTrackerWithId() with id '"+id+"' completed");
       } else {
-        console.log("startTrackerWithId() with id '"+id+"' skipped: analytics is undefined");
+        console.log("startTrackerWithId() with id '"+id+"' skipped: window.analytics is undefined");
       }
     };
 
@@ -19,10 +19,10 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("trackView() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.trackView(screenTitle);
+          if (typeof window.analytics != "undefined") {
+            window.analytics.trackView(screenTitle);
           } else {
-            console.log("trackView() skipped: analytics is undefined");
+            console.log("trackView() skipped: window.analytics is undefined");
           }
         },
         trackEvent: function(category, action, label, value) {
@@ -30,10 +30,21 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("trackEvent() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.trackEvent(category, action, label, value);
+          if (typeof window.analytics != "undefined") {
+            window.analytics.trackEvent(category, action, label, value);
           } else {
-            console.log("trackEvent() skipped: analytics is undefined");
+            console.log("trackEvent() skipped: window.analytics is undefined");
+          }
+        },
+        trackException: function(description, fatal) {
+          if (gaMobileAppTrackerId==null) {
+            console.log("trackException() skipped: provider not initialized");
+            return;
+          }
+          if (typeof window.analytics != "undefined") {
+            window.analytics.trackException(description, fatal);
+          } else {
+            console.log("trackException() skipped: window.analytics is undefined");
           }
         },
         addTransaction: function(id, affiliation, revenue, tax, shipping, currencyCode) {
@@ -41,10 +52,10 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("addTransaction() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.addTransaction(id, affiliation, revenue, tax, shipping, currencyCode);
+          if (typeof window.analytics != "undefined") {
+            window.analytics.addTransaction(id, affiliation, revenue, tax, shipping, currencyCode);
           } else {
-            console.log("addTransaction() skipped: analytics is undefined");
+            console.log("addTransaction() skipped: window.analytics is undefined");
           }
         },
         addTransactionItem: function(id, name, sku, category, price, quantity, currencyCode) {
@@ -52,21 +63,21 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("addTransactionItem() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.addTransactionItem(id, name, sku, category, price, quantity, currencyCode);
+          if (typeof window.analytics != "undefined") {
+            window.analytics.addTransactionItem(id, name, sku, category, price, quantity, currencyCode);
           } else {
-            console.log("addTransactionItem() skipped: analytics is undefined");
+            console.log("addTransactionItem() skipped: window.analytics is undefined");
           }
         },
-        addCustomDimension: function(key, value) {
+        addCustomDimension: function(key, value, onSuccess, onError) {
         	if (gaMobileAppTrackerId==null) {
                 console.log("addCustomDimension() skipped: provider not initialized");
                 return;
               }
-              if (typeof analytics != "undefined") {
-                analytics.addCustomDimension(key, value);
+              if (typeof window.analytics != "undefined") {
+                window.analytics.addCustomDimension(key, value, onSuccess, onError);
               } else {
-                console.log("addCustomDimension() skipped: analytics is undefined");
+                console.log("addCustomDimension() skipped: window.analytics is undefined");
               }
         },
         setUserId: function(userId) {
@@ -74,10 +85,10 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("setUserId() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.setUserId(userId);
+          if (typeof window.analytics != "undefined") {
+            window.analytics.setUserId(userId);
           } else {
-            console.log("setUserId() skipped: analytics is undefined");
+            console.log("setUserId() skipped: window.analytics is undefined");
           }
         },
         debugMode: function() {
@@ -85,10 +96,10 @@ angular.module('angular-cordova-mobile-google-analytics', [])
             console.log("debugMode() skipped: provider not initialized");
             return;
           }
-          if (typeof analytics != "undefined") {
-            analytics.debugMode();
+          if (typeof window.analytics != "undefined") {
+            window.analytics.debugMode();
           } else {
-            console.log("debugMode() skipped: analytics is undefined");
+            console.log("debugMode() skipped: window.analytics is undefined");
           }
         }
       };
